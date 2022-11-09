@@ -11,7 +11,7 @@ dotenv.config();
 
 export const axiosURL =
   process.env.REACT_APP_API ||
-  "https://pi-food-flax.vercel.app"||
+  /* "https://pi-food-flax.vercel.app"|| */
   "http://localhost:3001";
 
 

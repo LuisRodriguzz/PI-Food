@@ -20,19 +20,19 @@
 
 // Proyecto sin deployar
 
-/* const server = require('./src/app.js');
+const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {    // el force en false no borra lo guardado de la base de datos...
-  server.listen(process.env.PORT, () => {
-    console.log('%s listening at' + process.env.PORT); // deployado Mi Proyecto
+conn.sync({ force: true }).then(() => {
+  server.listen(3001, () => {
+    console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
-}); */
+});
 
 // Proyecto con deploy
 
-require("dotenv").config();
+/* require("dotenv").config();
 const server = require("./src/app.js");
 const PORT = 3001;
 const { conn } = require("./src/db.js");
@@ -44,3 +44,4 @@ const cors = require('cors');
     console.log(`Servidor Activo!`);
   }); 
 }); 
+ */
