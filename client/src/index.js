@@ -10,7 +10,9 @@ dotenv.config();
 /* import { BrowserRouter } from 'react-router-dom'; */
 
 export const axiosURL =
-  process.env.REACT_APP_API || "http://localhost:3001";
+  process.env.REACT_APP_API ||
+  "https://pi-food-flax.vercel.app"||
+  "http://localhost:3001";
 
 
 ReactDOM.render(
