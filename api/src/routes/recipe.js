@@ -79,7 +79,7 @@ const getAllRecipes = async function () {
 
 router.get('/', async (req, res, next) => {
 
-    /* console.log(API_KEYA) */
+    console.log('Entro aqui')
 
     try {
         getKey();

@@ -4,13 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import store from './store' 
+import store from './store'
+import dotenv from "dotenv";
+dotenv.config();
 /* import { BrowserRouter } from 'react-router-dom'; */
 
 export const axiosURL =
-  process.env.REACT_APP_API ||
-  "https://pi-food-production-ac68.up.railway.app"||
-  "http://localhost:3001";
+  process.env.REACT_APP_API || "http://localhost:3001";
+
 
 ReactDOM.render(
   <Provider store={store}>

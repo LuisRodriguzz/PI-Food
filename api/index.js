@@ -17,7 +17,7 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
+/* const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
@@ -25,4 +25,19 @@ conn.sync({ force: true }).then(() => {    // el force en false no borra lo guar
   server.listen(process.env.PORT, () => {
     console.log('%s listening at' + process.env.PORT); // deployado Mi Proyecto
   });
-});
+}); */
+
+// Proyecto con deploy
+
+require("dotenv").config();
+const server = require("./src/app.js");
+const PORT = 3001;
+const { conn } = require("./src/db.js");
+const cors = require('cors');
+
+ conn.sync({ force: false }).then(() => {
+  server.use(cors({ credentials: true }));
+  server.listen(process.env.PORT || PORT, () => {
+    console.log(`Servidor Activo!`);
+  }); 
+}); 

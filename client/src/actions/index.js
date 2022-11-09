@@ -75,19 +75,3 @@ export function postRecipe(payload){
         
     }
 } 
-
-/*  export function getRecipeDetail(id){
-    return async function(dispatch){
-        try{
-            var json = await  axios.get('http://localhost:3001/api/recipes/' + id)
-            return dispatch ({
-                type: 'GET_RECIPE_DETAIL',
-                payload: json.data
-            })
-        }
-        catch(error){
-            console.log(error)
-        }
-    }
-}  */
-
