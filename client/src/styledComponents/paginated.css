@@ -1,0 +1,38 @@
+.paginated {
+    list-style-type: none;
+    text-align: center
+}
+
+.number {
+    
+    background-color: white;
+    border: black 2px solid;
+    display: inline;
+    margin-right: 10px;
+}
+
+  .eachA {
+    color: white;
+    padding: 0 4px;
+    text-decoration: none;
+    background-color: black;
+    box-shadow: 0 0 5px rgb(255 255 255), 0 0 10px rgb(255 255 255);
+  }
+  
+    .eachA:hover {
+    background-color: white;
+    color: black;
+   } 
+
+   .paginatedPages {
+    width: 4vw;
+    margin-left: 47vw;
+    border: 1px solid;
+    padding: 10px ;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 0 5px rgb(255 255 255), 0 0 10px rgb(255 255 255);
+    color: rgb(255, 255, 255);
+    font-style: oblique;
+    font-weight: bold;
+}

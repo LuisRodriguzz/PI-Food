@@ -1,0 +1,56 @@
+.landingTitlePincipal {
+  grid-auto-columns:auto;
+    grid-gap: 10px;
+    background-color: rgb(0, 0, 0);
+    margin-top: 0px;
+    align-items: center;
+    width: 60vw;
+    margin-left : 20vw;
+    position:inherit;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    font-style: oblique;
+    
+      border:1px solid rgb(255, 255, 255);
+      padding: 10px ;
+      border-radius: 15px;
+      box-shadow: 0 0 5px rgb(255, 255, 255), 0 0 10px rgb(255, 255, 255);
+  }
+
+.landingHomeButton{
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    border-top: 1px solid;
+    padding: 10px ;
+    margin-top: 10px;
+    border-radius: 5px;
+    height: 50px;
+    width: 100px;
+    font-size: large;
+    box-shadow: 0 0 5px rgb(255, 255, 255), 0 0 10px rgb(255, 255, 255);
+    font-style: oblique;
+    font-weight: bold; 
+}
+
+.landingHomeButton:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+ } 
+
+.landingBackGround{
+  background: url('https://images.alphacoders.com/438/thumb-1920-438979.jpg') no-repeat center center fixed;
+ 
+  position:relative;
+  min-width: 400px; 
+	min-height: 1000px;
+	margin: 0;
+	padding: 0;
+	
+	-khtml-background-size:cover;  /*  Konqueror */
+	-webkit-background-size:cover; /* Webkit */
+	-moz-background-size:cover;  /* Firefox */
+	-o-background-size:cover;  /*  Opera */
+	background-size:cover; /* Resto */
+
+ 
+}

@@ -1,0 +1,160 @@
+.homeTitlePincipal {
+    
+    
+    grid-auto-columns:auto;
+    grid-gap: 10px;
+    width: 40vw;
+    margin-left : 30vw;
+    position:relative;
+    box-sizing: border-box;
+    margin-top: 10px;
+      padding: 10px ;
+      border-radius: 15px;
+      text-shadow: 0 0 5px white, 0 0 5px white;
+     color: rgb(0, 0, 0);
+     font-style: oblique;
+     font-weight: bold; 
+  }
+
+  .homeTitlePincipal::after,.homeTitlePincipal::before {
+    content: '';
+    position: absolute;
+    width: 170px;
+    height: 3px;
+    background-color: currentColor;
+    top: 0.6em;
+    transform: scale(0);
+    transition: all 0.2s ease-in ;
+}
+
+.homeTitlePincipal:hover::before, .homeTitlePincipal:hover::after {
+   transform: scale(1);
+}
+.homeTitlePincipal::before {
+  left: -140px;
+}
+
+.homeTitlePincipal::after {
+  right: -140px;
+}
+
+
+  /* .homeSelects{
+    font-style: oblique;
+     font-weight: bold;
+  } */
+
+  .homeSelects{
+    grid-auto-columns:auto;
+    grid-gap: 10px;
+    background-color: rgb(0, 0, 0);
+    width: 34vw;
+    margin-left : 33vw;
+    position:relative;
+    box-sizing: border-box;
+    margin-top: 10px;
+      border:1px solid black;
+      padding: 10px ;
+      border-radius: 15px;
+      box-shadow: 0 0 5px rgb(255, 255, 255), 0 0 10px rgb(255, 255, 255);
+  }
+
+  .homeCardGrid{
+    display: inline-block;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    height: 350px;
+    grid-gap: 10px;
+    gap: 10px;
+    margin: 10px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: #000000;
+    box-shadow: 0 0 5px rgb(255 255 255), 0 0 10px rgb(255 255 255);
+    border: 1px solid black;
+  }
+
+  .homeCardGrid:hover {
+    animation: myAnim 1s ease 0s 1 normal forwards;
+    cursor: pointer;
+  }
+
+  .homeBackGround{
+    
+
+  background: url('https://media.traveler.es/photos/634ec2c26d82486fc0d1774a/16:9/w_2048,h_1152,c_limit/Asia-%201111%20ONES%20(Hong%20Kong,%20China),%20disen%CC%83ado%20por%20M.R.%20STUDIO%20.jpeg') no-repeat center center fixed;
+ 
+  position:relative;
+  min-width: 400px; 
+	min-height: 1200px;
+	margin: 0;
+	padding: 0;
+	
+	-khtml-background-size:cover;  /*  Konqueror */
+	-webkit-background-size:cover; /* Webkit */
+	-moz-background-size:cover;  /* Firefox */
+	-o-background-size:cover;  /*  Opera */
+	background-size:cover; /* Resto */
+  }
+
+  .homeNextPreviusPages {
+    width: 8vw;
+    /* margin-left: 45vw; */
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 35px;
+    box-shadow: 0 0 5px rgb(0 0 0), 0 0 10px rgb(0 0 0);
+    color: rgb(0 0 0);
+    font-style: oblique;
+    font-weight: bold;
+    background-color: red;
+}
+
+.homeNextPreviusPages:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+ } 
+
+.homeResetPages {
+  width: 8vw;
+  /* margin-left: 45vw; */
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 35px;
+  box-shadow: 0 0 5px rgb(0 0 0), 0 0 10px rgb(0 0 0);
+  color: rgb(0 0 0);
+  font-style: oblique;
+  font-weight: bold;
+  background-color: red;
+}
+
+.homeResetPages:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+ } 
+
+.homeNextPreviusPagesDiv {
+  /* display:inline-block;  */
+  grid-template-rows: auto;
+   grid-template-columns: 1fr 1fr; 
+}
+
+
+@keyframes myAnim {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+  

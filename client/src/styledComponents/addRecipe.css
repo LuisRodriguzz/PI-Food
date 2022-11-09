@@ -1,0 +1,130 @@
+.addRecipeForm {
+  margin-top: 10px;
+  border-top: 1px solid;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgb(255 255 255), 0 0 10px rgb(255 255 255);
+  color: rgb(255, 255, 255);
+  font-style: oblique;
+  background-color: rgb(0, 0, 0);
+}
+
+.buttonDelete {
+  color: #fff;
+    background-color: #ff0019;
+    border-color: #ff0019;
+    box-shadow: 0 0 5px rgb(255 255 255), 0 0 10px rgb(255 255 255);
+}
+
+.buttonDelete:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+ } 
+      
+  
+  .addTitlePincipal {
+    grid-auto-columns: auto;
+    grid-gap: 10px;
+    width: 40vw;
+    margin-left: 30vw;
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    text-shadow: 0 0 5px white, 0 0 5px white;
+    color: rgb(0, 0, 0);
+    font-style: oblique;
+    font-weight: bold;
+    
+  }
+
+  .addTitlePincipal::after,.addTitlePincipal::before {
+    content: '';
+    position: absolute;
+    width: 170px;
+    height: 3px;
+    background-color: currentColor;
+    top: 0.6em;
+    transform: scale(0);
+    transition: all 0.2s ease-in ;
+}
+
+.addTitlePincipal:hover::before, .addTitlePincipal:hover::after {
+   transform: scale(1);
+}
+.addTitlePincipal::before {
+  left: -140px;
+}
+
+.addTitlePincipal::after {
+  right: -140px;
+}
+  
+  .addCreateButton {
+    width: 8vw;
+    /* margin-left: 45vw; */
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 35px;
+    box-shadow: 0 0 5px rgb(255, 255, 255), 0 0 10px rgb(255, 255, 255);
+    color: rgb(0 0 0);
+    font-style: oblique;
+    font-weight: bold;
+    background-color: red;
+  }
+  
+  .addCreateButton:hover {
+    background-color: white;
+    color: black;
+   } 
+  
+  .addSelectButton {
+    margin-top: 10px;
+    border-top: 1px solid;
+    padding: 10px ;
+    border-radius: 5px;
+  }
+  
+  .addChoseDiet {
+    grid-auto-columns: auto;
+    grid-gap: 10px;
+    background-color: black;
+    width: 10vw;
+    margin-left: 45vw;
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 10px;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgb(255 255 255), 0 0 10px rgb(255 255 255);
+    color: rgb(255, 255, 255);
+    font-style: oblique;
+    font-weight: bold;
+  }
+  
+  .addInput{
+    size: 200px;
+  }
+  
+  .addBackGround{
+      
+    background: url('https://eqd66354g6k.exactdn.com/wp-content/uploads/2021/11/int_thermomix_cookidoo_CR_notebook_landscape_medium.jpg?strip=all&lossy=1&ssl=1') no-repeat center center fixed;
+  
+  position:relative;
+   min-width: 400px; 
+  min-height: 1000px;
+  margin: 0;
+  padding: 0;
+  
+  -khtml-background-size:cover;  /*  Konqueror */
+  -webkit-background-size:cover; /* Webkit */
+  -moz-background-size:cover;  /* Firefox */
+  -o-background-size:cover;  /*  Opera */
+  background-size:cover; /* Resto */
+  }
+  
+  
