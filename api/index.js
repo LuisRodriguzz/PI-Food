@@ -23,6 +23,6 @@ const { conn } = require('./src/db.js');
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {    // el force en false no borra lo guardado de la base de datos...
   server.listen(process.env.PORT, () => {
-    console.log('%s listening at 3001' + process.env.PORT); // deployado Mi Proyecto
+    console.log('%s listening at' + process.env.PORT); // deployado Mi Proyecto
   });
 });
