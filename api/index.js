@@ -17,6 +17,9 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Proyecto sin deployar
+
 /* const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 

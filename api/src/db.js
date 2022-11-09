@@ -5,7 +5,7 @@ const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
 } = process.env;
-
+/* const { DB_USER, DB_PASSWORD, DB_HOST } = require('./DB_variables.js'); */
 let sequelize =
   process.env.NODE_ENV === "production"
     ? new Sequelize({
@@ -34,6 +34,8 @@ let sequelize =
         logging: false,
         native: false,
       });
+
+      // Proyecto sin deploy
 
 /* const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/FoodDB`, {
   logging: false, // set to console.log to see the raw SQL queries
