@@ -10,7 +10,7 @@ dotenv.config(); */
 
  export const axiosURL =
   process.env.REACT_APP_API ||
-  /* "https://pi-food-flax.vercel.app"|| */
+  "pi-food-production-2982.up.railway.app"||
   "http://localhost:3001";
 
 
