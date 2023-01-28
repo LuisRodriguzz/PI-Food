@@ -1,188 +1,117 @@
-/* require('dotenv').config(); */
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-const axios = require('axios');
-const { Recipe, Diet } = require('../db');
-const { Op, addDiet } = require('sequelize');
-const { getKey } = require('../keys');
-
-
+const { Recipe, Diet } = require("../db")
 const router = Router();
+const axios = require("axios");
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+const getApiInfo = async () => {
 
-/* const API_KEYA = getKey(); */
+    const apiUrl = await axios.get("https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5/information&number=100")
 
-const getRecipeApi = async function () {
-
-    let recipeApi
-    let recipeInfo
-    let recipeInfoStepByStep
-    let stepByStep1
-
-    recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${getKey()}&addRecipeInformation=true&number=100`)
-
-    recipeInfoStepByStep = await recipeApi.data.results.map(el => {
-
-        if (el.analyzedInstructions[0] !== undefined) {
-            stepByStep1 = el.analyzedInstructions[0].steps.map(elem => elem.step)
-        } else {
-            stepByStep1 = ["There is no stepByStep"]
+    const apiInfo = await apiUrl.data.results.map(e => {
+        return {
+            id: e.id,
+            title: e.title,
+            image: e.image,
+            diets: e.diets.map(e => e),
+            dishTypes: e.dishTypes.map(e => e),
+            summary: e.summary,
+            healthScore: e.healthScore,
+            analyzedInstructions: e.analyzedInstructions.map(e => e.steps.map(e => e.step))
         }
-        return stepByStep1
     })
 
-
-    recipeInfo = await recipeApi.data.results.map(el => {
-        return {
-            id: el.id,
-            name: el.title,
-            dishSummary: el.summary.replace(/<[^>]+>/g, ""), // regex utilizado para eliminar tags en la descripcion
-            healthScore: el.healthScore,
-            // la propiedad stepByStep se incorpora a continuacion
-            image: el.image,
-            diets: el.diets
-        };
-    });
-
-    for (let i = 0; i < recipeInfo.length; i++) {
-        recipeInfo[i].stepByStep = recipeInfoStepByStep[i]
-    }
-
-    return recipeInfo;
+    return apiInfo
 }
 
-const getRecipeDb = async function () {
-
+const getDbInfo = async () => {
     return await Recipe.findAll({
-        /* include: Diet, */
         include: {
             model: Diet,
-            attributes: ['name'],
+            attributes: ["name"],
             through: {
                 attributes: [],
-            },
+            }
         }
     })
 }
 
-const getAllRecipes = async function () {
-
-    const apiInfo = await getRecipeApi();
-    const dbInfo = await getRecipeDb();
-    const totalInfo = apiInfo.concat(dbInfo);
-    return totalInfo;
-
+const getAllRecipes = async () => {
+    const apiInfo = await getApiInfo()
+    const dbInfo = await getDbInfo()
+    const infoTotal = apiInfo.concat(dbInfo)
+    return infoTotal
 }
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res) => {
 
-    console.log('Entro aqui')
+    const { title } = req.query
+    let allRecipes = await getAllRecipes()
 
-    try {
-        getKey();
+    if (title) {
+        let recipeTitles = await allRecipes.filter(e => e.title.toLowerCase().includes(title.toLocaleLowerCase()))
 
-        const name = req.query.name
-        let totalRecipes = await getAllRecipes();
-        /* console.log (totalRecipes) */
-        if (name) {
-            let recipeName = await totalRecipes.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
-            recipeName.length ?
-                res.status(200).send(recipeName) :
-                res.status(404).send("Cant find the recipe")
-        } else {
-            res.status(200).send(totalRecipes)
-        }
+        recipeTitles.length ?
+            res.status(200).send(recipeTitles)
+            :
+            res.status(404).send("Recipe not found")
 
-    } catch (error) {
-        next(error)
+    } else {
+        res.status(200).send(allRecipes)
     }
+
+
 
 })
 
-router.get('/:id', async (req, res, next) => {    // el next esta para que luego se vaya al siguiente middleware, que es el control de errores que esta en app
+router.get("/:id", async (req, res) => {
 
-    try {
+    const { id } = req.params
+    const allRecipes = await getAllRecipes()
 
-        let recipe;
-        let recipeApi
-        let recipeInfoStepByStep
-
-        const id = req.params.id;
-
-        if (typeof id === "string" && id.length > 8) {
-            recipe = await Recipe.findAll({
-                where: { id: id },
-                include: {
-                    model: Diet,
-                    attributes: ['name'],
-                    through: {
-                        attributes: [],
-                    },
-                }
-            })
-
-        } else {
-            response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${getKey()}`)
-            recipeApi = response.data
-
-            if (recipeApi.analyzedInstructions[0] !== undefined) {
-                recipeInfoStepByStep = recipeApi.analyzedInstructions[0].steps.map(elem => elem.step)
-            } else {
-                recipeInfoStepByStep = ["There is no stepByStep"]
-            }
-
-            recipe = {
-                id: recipeApi.id,
-                name: recipeApi.title,
-                dishSummary: recipeApi.summary.replace(/<[^>]+>/g, ""), //delete text tags
-                healthScore: recipeApi.healthScore,
-                stepByStep: recipeInfoStepByStep,
-                image: recipeApi.image,
-                diets: recipeApi.diets
-            };
-
-        }
-
-        res.status(201).send(recipe)
-
-    } catch (error) {
-        next(error)
+    if (id) {
+        let recipeId = await allRecipes.filter(e => e.id == id)
+        recipeId.length ?
+            res.status(200).json(recipeId) : res.status(404).send("Recipe not found")
     }
 })
 
-router.post('/', async (req, res, next) => {    // el next esta para que luego se vaya al siguiente middleware, que es el control de errores que esta en app
+router.delete("/:id", async (req, res) => {
+
+    const { id } = req.params
+
+    await Recipes.destroy({
+        where: { id }
+    })
+
+    res.status(200).send("Recipe deleted")
+})
+
+router.post("/", async (req, res) => {
     try {
-        var { name, dishSummary, healthScore, stepByStep, image, createdInDb, diets } = req.body;
+        let { title, summary, healthScore, analyzedInstructions, image, dietsCheck } = req.body
 
-        function toUpperCasefunc(arg) {
-            var b = arg[0].toUpperCase() + arg.substring(1)
-            return b
-        }
-        name = toUpperCasefunc(name)
-
-        let newRecipe = await Recipe.create({
-            name,
-            dishSummary,
+        let createdRecipe = await Recipe.create({
+            title,
+            summary,
             healthScore,
-            stepByStep,
+            analyzedInstructions,
             image,
-            createdInDb
+
         })
 
-        let dietDb = await Diet.findAll({
-            where: { name: diets }
-        })
+        let dietsDb = await Diet.findAll({
+            where: { name: dietsCheck }
+        });
 
-        await newRecipe.addDiet(dietDb)
+        await createdRecipe.addDiets(dietsDb);
 
-        res.status(201).send(newRecipe)
+        res.send(createdRecipe)
 
     } catch (error) {
-        next(error)
+        res.status(400).send({ error: error.message })
     }
+
 })
+
 
 module.exports = router;

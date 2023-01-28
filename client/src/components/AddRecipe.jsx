@@ -53,15 +53,6 @@ export default function AddRecipe() {
         }));
     }
 
-    /* function onCheckboxChange(e) {
-        if (e.target.checked) {
-            setInput({
-                ...input,
-                diets: [...input.diets, e.target.value]
-            })
-        }
-    } */
-
     function onSelectChange(e) {
         setInput({
             ...input,
@@ -137,17 +128,7 @@ export default function AddRecipe() {
                     <label htmlFor="">Step By Step: </label>
                     <input onChange={onInputChange} name="stepByStep" type="text" value={input.stepByStep} placeholder="Insert a stepByStep"/>
                 </div>
-                {/* <div>
-                    <label htmlFor="">Diets: </label>
-                    <label><input onChange={(e) => onCheckboxChange(e)} name="action" type="checkbox" value="Action" />Action</label>
-                    <label><input onChange={(e) => onCheckboxChange(e)} name="adventure" type="checkbox" value="Adventure" />Adventure</label>
-                    <label><input onChange={(e) => onCheckboxChange(e)} name="shooter" type="checkbox" value="Shooter" />Shooter</label>
-                    <label><input onChange={(e) => onCheckboxChange(e)} name="indie" type="checkbox" value="Indie" />Indie</label>
-                </div> */}
                 <select className="addSelectButton" name="selectDiet" onChange={(e) => onSelectChange(e)}>
-                    {/* {diets && diets.map((diet) => (
-                        <option value={diet.name}>{diet.name}</option>
-                    ))} */}
                     <option value="gluten free">Gluten Free</option>
                     <option value="ketogenic">Ketogenic</option>
                     <option value="vegetarian">Vegetarian </option>

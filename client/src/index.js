@@ -5,11 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import store from './store'
-import dotenv from "dotenv";
-dotenv.config();
-/* import { BrowserRouter } from 'react-router-dom'; */
+/* import dotenv from "dotenv";
+dotenv.config(); */
 
-export const axiosURL =
+ export const axiosURL =
   process.env.REACT_APP_API ||
   /* "https://pi-food-flax.vercel.app"|| */
   "http://localhost:3001";

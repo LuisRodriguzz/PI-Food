@@ -64,6 +64,8 @@ export default function Home() {
         dispatch(getRecipes());
     }
 
+    
+
     const dietsAll = useSelector((state) => {console.log(state.diets); return state.diets})
 
     return (

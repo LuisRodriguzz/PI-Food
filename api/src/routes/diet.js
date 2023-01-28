@@ -1,62 +1,32 @@
-/* require('dotenv').config(); */
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-const axios = require('axios');
-const { Recipe, Diet } = require('../db');
-const {  Op } = require('sequelize');
-const { getKey } = require('../keys');
-
- 
+const { Recipe, Diet } = require("../db")
 const router = Router();
+const axios = require("axios");
 
-const API_KEYA = getKey();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+router.get("/", async (req, res) => {
 
-router.get('/', async (req, res, next) => {
+    var dietsList = await Diet.findAll();
 
-    try {
-     const dietApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEYA}&addRecipeInformation=true&number=100`) 
-    
-    /* vegetarian, vegan, glutenFree  */
-     
-     const diets =  dietApi.data.results.map(el => el.diets)
+    if (!dietsList.length) {
 
-     var dietEach = [];
+        const ApiDiets = await axios.get("https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5/information&number=100")
 
-        for (let h = 0; h < diets.length ; h++){
-            dietEach = dietEach.concat(diets[h].map(el =>{return el}))
+        const allDiets = ApiDiets.data.results.map(e => e.diets).flat()
+
+        let diets = []
+
+        allDiets.forEach((e) => { if (!diets.includes(e)) diets.push(e) })
+
+        for (const name of diets) {
+            const dietsDb = await Diet.create({ name });
+            dietsList.push(dietsDb);
         }
 
-        for ( let i = 0 ; i < dietEach.length; i++){
-            await Diet.findOrCreate({
-                where: { name: dietEach[i] },
-            })}
+    }
 
-            let allDiets = []  
-            allDiets = await Diet.findAll()
-            /* console.log("allDiets")  */
-             /* console.log(allDiets)   */ 
-             res.send(allDiets) 
+    return res.send(dietsList);
 
-            } catch (error) {
-                next(error)
-            }
-     });
-
-      router.post('/add', (req, res, next) => {    // el next esta para que luego se vaya al siguiente middleware, que es el control de errores que esta en app
-    
-        const {name} = req.body;
-        Diet.create({ name})
-        .then((newDiet) => {
-            res.status(201).send(newDiet)
-        })
-    
-        .catch(error => next(error))
-    
-    
-    }) 
+});
 
 module.exports = router;
