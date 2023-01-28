@@ -126,9 +126,7 @@ const initialState = {
               allRecipes[n].diets[m] =  allRecipes[n].diets[m].name
               } 
             } 
-          }
-  
-          /* console.log (allRecipes) */
+        }
         
         const dietFiltered = action.payload === 'ALL' ? allRecipes :
           allRecipes.filter(el => el.diets.includes(action.payload))

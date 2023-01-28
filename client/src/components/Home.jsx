@@ -85,10 +85,6 @@ export default function Home() {
                     <option value='HEALTH_SCORE_DESCENDENT'>Health Score Descendent</option>
                 </select>
                 <select name="selectFiler" onChange={e => onSelectChangeFilterDiet(e)}>
-                    {/* <option value='ALL'>All</option>
-                    <option value='lacto ovo vegetarian'>Vegetarian</option>
-                    <option value='vegan'>Vegan</option>
-                    <option value='gluten free'>Gluten Free</option> */}
                     <option value='ALL'>All Diet</option>
                     {dietsAll && dietsAll.map((diet) => (
                         <option value={diet.name} key={diet.id}>{diet.name}</option>
