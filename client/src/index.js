@@ -5,13 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import store from './store'
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
- export const axiosURL =
-  process.env.REACT_APP_API ||
-  "pi-food-production-2982.up.railway.app"||
-  "http://localhost:3001";
+//  export const axiosURL =
+//   process.env.REACT_APP_API ||
+//   "pi-food-production-2982.up.railway.app"||
+//   "http://localhost:3001";
 
 
 ReactDOM.render(

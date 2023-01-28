@@ -3,7 +3,7 @@ import { axiosURL } from "../index";
 
 export function getRecipes(){
     return function(dispatch){
-        axios.get(`${axiosURL}/api/recipes`)
+        axios.get(`pi-food-production-2982.up.railway.app/api/recipes/`)
         .then((recipes) => {
             dispatch({
                 type: 'GET_RECIPES',
@@ -18,7 +18,7 @@ export function getRecipes(){
 
  export function searchRecipe(search){
     return function(dispatch){
-        axios.get(`${axiosURL}/api/recipes?name=${search}`)
+        axios.get(`pi-food-production-2982.up.railway.app/api/recipes?name=${search}`)
         .then((recipe) => {
             dispatch({
                 type: 'SEARCH_RECIPE',
@@ -54,7 +54,7 @@ export function filterRecipeByDiet(payload){
 
  export function getDiets(){
     return function(dispatch){
-        axios.get(`${axiosURL}/api/diets`)
+        axios.get(`pi-food-production-2982.up.railway.app/api/diets/`)
         .then((diets) => {
             dispatch({
                 type: 'GET_DIETS',
@@ -69,7 +69,7 @@ export function filterRecipeByDiet(payload){
 
 export function postRecipe(payload){
     return async function(dispatch){
-       const response = axios.post(`${axiosURL}/api/recipes`, payload)
+       const response = axios.post(`pi-food-production-2982.up.railway.app/api/recipes/`, payload)
         console.log(response)
         return response;
         
