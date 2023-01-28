@@ -3,22 +3,11 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import '../styledComponents/detailedRecipe.css';
 import axios from "axios";
-import { axiosURL } from "../index";
 
 
 
-export default function RecipeDetail(/* props */) {
+export default function RecipeDetail() {
 
-    /* console.log('props')
-    console.log(props)
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getRecipeDetail(props.match.params.id))
-    }, [dispatch])
-
-    const myRecipe = useSelector((state) => state.detail) */
 
     const [myRecipe, setMyRecipe] = useState(null)
 
@@ -28,7 +17,7 @@ export default function RecipeDetail(/* props */) {
     console.log(id)
 
     useEffect(() => {
-        axios.get(`${axiosURL}/api/recipes/${id}`)
+        axios.get(`pi-food-production-2982.up.railway.app/api/recipes/${id}`)
             .then((response) => {  // este response es videogame
                 response.data.length > 0 ?
                     setMyRecipe(response.data[0]) :
@@ -45,24 +34,12 @@ export default function RecipeDetail(/* props */) {
     var myNewRecipe = {}
     myNewRecipe = myRecipe
 
-    /*    function dietFilterDb(arg) {
-           let filteredDietsDb = []
-           arg.map((element1) => { filteredDietsDb.push(element1.name)})
-           return filteredDietsDb
-       }
-   
-       function dietFilter(arg) {
-           let filteredDiets = []
-           arg.map((element2) => { filteredDiets.push(element2 + " - ")})
-           return filteredDiets
-       } */
-
     console.log('myNewRecipe')
     console.log(myNewRecipe)
 
     async function deleteRecipe(id) {
         if (myNewRecipe.createdInDb) {
-            await axios.delete(`${axiosURL}/api/recipes/delete/${id}`);
+            await axios.delete(`pi-food-production-2982.up.railway.app/api/recipes/delete/${id}`);
             history.push('/recipes')
         }
     }
@@ -72,14 +49,6 @@ export default function RecipeDetail(/* props */) {
             <Link to='/recipes/'>
                 <button className="searchHomeButton">Home</button>
             </Link>
-
-            {/* <button className="searchHomeButton" onClick={() => deleteRecipe(id)} onHov>Delete</button> */}
-            {/* {myNewRecipe.createdInDb ? 
-            <div>
-                        </div>
-                        </div>
-                        :
-                        <div></div>} */}
             {
                 myNewRecipe ?
                     <div>
