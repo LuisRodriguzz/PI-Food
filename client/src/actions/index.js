@@ -3,7 +3,7 @@ import { axiosURL } from "../index";
 
 export function getRecipes(){
     return function(dispatch){
-        axios.get(`${axiosURL}/api/recipes/`)
+        axios.get(`${axiosURL}/api/recipes`)
         .then((recipes) => {
             dispatch({
                 type: 'GET_RECIPES',
@@ -54,7 +54,7 @@ export function filterRecipeByDiet(payload){
 
  export function getDiets(){
     return function(dispatch){
-        axios.get(`${axiosURL}/api/diets/`)
+        axios.get(`${axiosURL}/api/diets`)
         .then((diets) => {
             dispatch({
                 type: 'GET_DIETS',
@@ -69,7 +69,7 @@ export function filterRecipeByDiet(payload){
 
 export function postRecipe(payload){
     return async function(dispatch){
-       const response = axios.post(`${axiosURL}/api/recipes/`, payload)
+       const response = axios.post(`${axiosURL}/api/recipes`, payload)
         console.log(response)
         return response;
         
